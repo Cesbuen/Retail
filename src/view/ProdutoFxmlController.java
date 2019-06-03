@@ -7,7 +7,10 @@ package view;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 
 /**
  * FXML Controller class
@@ -16,12 +19,19 @@ import javafx.fxml.Initializable;
  */
 public class ProdutoFxmlController implements Initializable {
 
+    @FXML
+    private Button btn_salvarProduto;
+
+    @FXML
+    void acaoSalvarProduto(ActionEvent event) {
+
+    }
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
-    
+    }
 }

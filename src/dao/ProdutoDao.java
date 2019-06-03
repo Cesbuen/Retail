@@ -5,29 +5,50 @@
  */
 package dao;
 
-import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.EntityManager;
 import model.Produto;
 
-/**
+/*
  *
  * @author Usuario
  */
-public class ProdutoDao {
+public class ProdutoDao implements InterfaceProduto {
 
-    public ProdutoDao(Conexao conexao) {
-        
+    private EntityManager em;
+
+    public ProdutoDao(EntityManager em) {
+        this.em = em;
     }
 
-    public void salvarProduto(Produto produto) {
-        
+    @Override
+    public void inserir(Produto modelo) {
+        em.persist(modelo);
     }
 
-    public ArrayList<Produto> buscarTodosProdutos() {
-        return;
+    @Override
+    public void atualizar(Produto modelo) {
+        em.merge(modelo);
     }
 
-    public String buscarCodigoProduto() {
-       
+    @Override
+    public void deletar(int codigoProduto) {
+        em.remove(buscarPorCodigo(codigoProduto));
     }
-    
+
+    @Override
+    public List<Produto> buscarTodos() {
+        return em.createQuery("SELECT produto FROM Produto produto", Produto.class).getResultList();
+    }
+
+    @Override
+    public Produto buscarPorCodigo(int codigoProduto) {
+        return em.createQuery("SELECT produto from Produto produto WHERE produto.prod_codigo = "+codigoProduto, Produto.class).getSingleResult();
+    }
+
+    @Override
+    public Produto buscaPorNome(String nomeProduto) {
+        return em.createQuery("SELECT produto from Produto produto WHERE produto.prod_nome = "+nomeProduto, Produto.class).getSingleResult();
+    }
+
 }

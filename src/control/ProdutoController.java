@@ -6,48 +6,50 @@ package control;
 
 import dao.Conexao;
 import dao.ProdutoDao;
-import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.enterprise.context.ApplicationScoped;
+import javax.persistence.PersistenceContext;
 import javax.swing.JOptionPane;
 import model.Produto;
-import view.ProdutoView_Old;
+import view.ProdutoView;
 
 /**
  *
  * @author Cesar Bueno
  */
+@ApplicationScoped
 public class ProdutoController {
 
-    private final ProdutoView_Old produtoView;
+    @PersistenceContext(unitName = "Produto")
+    private static EntityManager em;
 
-    public ProdutoController(ProdutoView_Old produtoView) {
+    private final ProdutoView produtoView;
+
+    public ProdutoController(ProdutoView produtoView) {
         this.produtoView = produtoView;
     }
 
     public static boolean salvarProduto(String nomeProduto, String categoriaProduto, Integer quantidadeProduto) {
-        if(nomeProduto.isEmpty()){
+        if (nomeProduto.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Nome do produto não foi informado");
             return false;
         }
         Produto produto = new Produto(nomeProduto, categoriaProduto, quantidadeProduto);
 
-        Conexao conexao = new Conexao();
-        ProdutoDao produtoDao = new ProdutoDao(conexao);
-        produtoDao.salvarProduto(produto);
+        //Conexao conexao = new Conexao();
+        ProdutoDao produtoDao = new ProdutoDao(em);
+        produtoDao.inserir(produto);
 
-        return produto.persistir();
+        return true;
     }
 
-    public static String buscarCodigoProduto() {
-        Conexao conexao = new Conexao();
-        ProdutoDao produtoDao = new ProdutoDao(conexao);
-        return String.valueOf(Integer.parseInt(produtoDao.buscarCodigoProduto()) + 1);
-    }
 
-    public static ArrayList<Produto> pegarProdutos() {
-        Conexao conexao = new Conexao();
-        ProdutoDao pd = new ProdutoDao(conexao);
-        ArrayList<Produto> produtos = pd.buscarTodosProdutos();
-        conexao.fechar();
+    public static List<Produto> buscarProdutos() {
+        //Conexao conexao = new Conexao();
+        ProdutoDao pd = new ProdutoDao(em);
+        List<Produto> produtos = pd.buscarTodos();
+        //conexao.fechar();
 
         return produtos;
     }

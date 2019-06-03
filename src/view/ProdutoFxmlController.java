@@ -14,7 +14,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import model.Produto;
 
 /**
  * FXML Controller class
@@ -27,17 +26,38 @@ public class ProdutoFxmlController implements Initializable {
     private Button btn_salvarProduto;
 
     @FXML
-    private TextField tf_nomeProduto;
+    private Button btn_cancelarProduto;
     
     @FXML
-    private ComboBox<?> cb_categoriaProduto;
+    private TextField tf_codigoProduto;
+    
+    @FXML
+    private TextField tf_nomeProduto;
+
+    @FXML
+    private ComboBox<String> cb_categoriaProduto;
 
     @FXML
     private TextField tf_quantidadeProduto;
-    
+
+  
     @FXML
     void salvarProduto(ActionEvent event) {
-        ProdutoController.salvarProduto(null, tf_nomeProduto.getText(), "teste", Integer.parseInt(tf_quantidadeProduto.getText()));
+        String nomeProduto = tf_nomeProduto.getText();
+        String categoriaProduto = cb_categoriaProduto.getSelectionModel().getSelectedItem();
+        Integer quantidadeProduto = Integer.parseInt(tf_quantidadeProduto.getText());
+
+        ProdutoController.salvarProduto(null,
+                nomeProduto,
+                categoriaProduto,
+                quantidadeProduto);
+
+        limparCampos();
+    }
+    
+    @FXML
+    void cancelarProduto(ActionEvent event) {
+        limparCampos();
     }
 
     /**
@@ -45,6 +65,15 @@ public class ProdutoFxmlController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        cb_categoriaProduto.getItems().removeAll(cb_categoriaProduto.getItems());
+        cb_categoriaProduto.getItems().setAll("Cozinha", "Limpeza", "Higiêne", "Eletrônico");
+        cb_categoriaProduto.getSelectionModel().select("Cozinha");
+    }
+
+    
+    private void limparCampos() {
+        tf_nomeProduto.clear();
+        cb_categoriaProduto.getSelectionModel().select("Cozinha");
+        tf_quantidadeProduto.clear();
     }
 }

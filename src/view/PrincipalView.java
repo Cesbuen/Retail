@@ -13,23 +13,21 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author Cesar Bueno
+ * @author Usuario
  */
-public class ProdutoView extends Application {
+public class PrincipalView extends Application {
 
     @Override
-    public void start(Stage cadastroProduto) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("ProdutoFxml.fxml"));
-        
+    public void start(Stage principalTela) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("PrincipalFxml.fxml"));
+
         Scene cena = new Scene(root);
-        cadastroProduto.setScene(cena);
-        cadastroProduto.setTitle("Cadastrar Produto");
-        cadastroProduto.show();
-       
+        principalTela.setScene(cena);
+        principalTela.setTitle("Retail Software");
+        principalTela.show();
     }
-    
+
     public static void main(String[] args) {
         launch(args);
     }
-
 }

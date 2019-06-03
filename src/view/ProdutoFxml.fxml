@@ -8,32 +8,37 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="121.0" prefWidth="396.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ProdutoFxmlController">
+<AnchorPane id="AnchorPane" maxHeight="-1.0" maxWidth="-1.0" prefHeight="167.0" prefWidth="466.0" styleClass="mainFxmlClass" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ProdutoFxmlController">
    <children>
       <VBox layoutX="103.0" layoutY="21.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <children>
-            <HBox VBox.vgrow="ALWAYS">
+            <VBox styleClass="VBox" VBox.vgrow="ALWAYS">
                <children>
-                  <Label text="Produto:">
-                     <HBox.margin>
-                        <Insets right="2.0" />
-                     </HBox.margin>
-                  </Label>
-                  <TextField fx:id="tf_nomeProduto" HBox.hgrow="ALWAYS" />
+                  <Label styleClass="Label" text="Produto:" />
+                  <HBox VBox.vgrow="ALWAYS">
+                     <children>
+                        <TextField fx:id="tf_codigoProduto" editable="false" prefHeight="31.0" prefWidth="65.0" styleClass="TextField">
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                        </TextField>
+                        <TextField fx:id="tf_nomeProduto" promptText="Inserir nome do Produto" styleClass="TextField" HBox.hgrow="ALWAYS" />
+                     </children>
+                  </HBox>
                </children>
-               <VBox.margin>
+               <padding>
                   <Insets bottom="10.0" />
-               </VBox.margin>
-            </HBox>
+               </padding>
+            </VBox>
             <HBox VBox.vgrow="ALWAYS">
                <children>
                   <HBox HBox.hgrow="ALWAYS">
                      <children>
-                        <Label text="Categoria:">
+                        <Label styleClass="Label" text="Categoria:">
                            <HBox.margin>
                               <Insets right="2.0" />
                            </HBox.margin></Label>
-                        <ComboBox fx:id="cb_categoriaProduto" visibleRowCount="5" HBox.hgrow="ALWAYS" />
+                        <ComboBox fx:id="cb_categoriaProduto" styleClass="ComboBox" visibleRowCount="5" HBox.hgrow="ALWAYS" />
                      </children>
                      <rotationAxis>
                         <Point3D />
@@ -41,26 +46,29 @@
                   </HBox>
                   <HBox HBox.hgrow="ALWAYS">
                      <children>
-                        <Label text="Quantidade:">
+                        <Label styleClass="Label" text="Quantidade:">
                            <HBox.margin>
                               <Insets right="2.0" />
                            </HBox.margin></Label>
-                        <TextField fx:id="tf_quantidadeProduto" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="tf_quantidadeProduto" prefHeight="25.0" prefWidth="0.0" styleClass="TextField" HBox.hgrow="ALWAYS" />
                      </children>
                      <HBox.margin>
                         <Insets bottom="10.0" />
                      </HBox.margin>
                   </HBox>
                </children>
+               <VBox.margin>
+                  <Insets bottom="5.0" top="5.0" />
+               </VBox.margin>
             </HBox>
             <HBox alignment="CENTER_RIGHT" VBox.vgrow="ALWAYS">
                <children>
-                  <Button fx:id="btn_salvarProduto" mnemonicParsing="false" onAction="#salvarProduto" text="Salvar">
+                  <Button fx:id="btn_salvarProduto" mnemonicParsing="false" onAction="#salvarProduto" styleClass="Button" text="Salvar" textFill="WHITE">
                      <HBox.margin>
                         <Insets right="2.0" />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" text="Cancelar" />
+                  <Button fx:id="btn_cancelarProduto" mnemonicParsing="false" onAction="#cancelarProduto" styleClass="Button" text="Cancelar" textFill="WHITE" />
                </children>
             </HBox>
          </children>

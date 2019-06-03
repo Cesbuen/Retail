@@ -3,5 +3,41 @@
  */
 
 .mainFxmlClass {
+    -fx-background-color: white;
+}
 
+.VBox {
+    -fx-background-color: #cccccc;
+    -fx-background-radius: 10;
+}
+
+.Label{
+    -fx-text-fill: #009999;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-font-alignment: center;
+}
+
+.TextField{
+    -fx-background-color: #696969;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 15px;
+    -fx-background-radius: 10;
+}
+
+.Button{
+    -fx-background-color: #009999;
+    -fx-background-radius: 10;
+    
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+}
+
+.ComboBox{
+    -fx-background-color: #009999;
+    -fx-background-radius: 10;
+    
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
 }

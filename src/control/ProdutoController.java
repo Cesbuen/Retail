@@ -4,11 +4,11 @@
  */
 package control;
 
-import dao.Conexao;
 import dao.ProdutoDao;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.inject.Produces;
 import javax.persistence.PersistenceContext;
 import javax.swing.JOptionPane;
 import model.Produto;
@@ -24,33 +24,14 @@ public class ProdutoController {
     @PersistenceContext(unitName = "Produto")
     private static EntityManager em;
 
-    private final ProdutoView produtoView;
-
-    public ProdutoController(ProdutoView produtoView) {
-        this.produtoView = produtoView;
-    }
-
-    public static boolean salvarProduto(String nomeProduto, String categoriaProduto, Integer quantidadeProduto) {
+    @Produces
+    public static boolean salvarProduto(Long codigoProduto, String nomeProduto, String categoriaProduto, Integer quantidadeProduto) {
         if (nomeProduto.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Nome do produto não foi informado");
             return false;
         }
-        Produto produto = new Produto(nomeProduto, categoriaProduto, quantidadeProduto);
-
-        //Conexao conexao = new Conexao();
-        ProdutoDao produtoDao = new ProdutoDao(em);
-        produtoDao.inserir(produto);
-
+        Produto produto = new Produto(codigoProduto, nomeProduto, categoriaProduto, quantidadeProduto);
+        ProdutoDao.getInstance().inserirObjeto(produto);
         return true;
-    }
-
-
-    public static List<Produto> buscarProdutos() {
-        //Conexao conexao = new Conexao();
-        ProdutoDao pd = new ProdutoDao(em);
-        List<Produto> produtos = pd.buscarTodos();
-        //conexao.fechar();
-
-        return produtos;
     }
 }

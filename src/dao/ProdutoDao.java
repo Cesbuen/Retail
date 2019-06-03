@@ -8,47 +8,78 @@ package dao;
 import java.util.List;
 import javax.persistence.EntityManager;
 import model.Produto;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import util.HibernateUtil;
 
 /*
  *
  * @author Usuario
  */
-public class ProdutoDao implements InterfaceProduto {
+public class ProdutoDao implements InterfaceDao {
 
-    private EntityManager em;
+    public static ProdutoDao produtoDao = null;
 
-    public ProdutoDao(EntityManager em) {
-        this.em = em;
+    private SessionFactory factory;
+    private Transaction transaction;
+
+    public ProdutoDao() {
+        factory = HibernateUtil.getSessionFactory();
+    }
+
+    public static ProdutoDao getInstance() {
+        if (produtoDao == null) {
+            produtoDao = new ProdutoDao();
+        }
+        return produtoDao;
+    }
+    
+    @Override
+    public boolean inserirObjeto(Object produto) {
+        boolean retorno = false;
+        Session sessao = factory.openSession();
+
+        try {
+            transaction = sessao.beginTransaction();
+            sessao.save(produto);
+            transaction.commit();
+            retorno = true;
+        } catch (Exception ex) {
+            transaction.rollback();
+            retorno = false;
+            ex.printStackTrace();
+        } finally {
+            sessao.close();
+        }
+
+        return retorno;
     }
 
     @Override
-    public void inserir(Produto modelo) {
-        em.persist(modelo);
+    public void atualizarObjeto(Object modelo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void atualizar(Produto modelo) {
-        em.merge(modelo);
+    public void deletarObjeto(int codigo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void deletar(int codigoProduto) {
-        em.remove(buscarPorCodigo(codigoProduto));
+    public List<Object> buscarTodos() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<Produto> buscarTodos() {
-        return em.createQuery("SELECT produto FROM Produto produto", Produto.class).getResultList();
+    public Object buscarPorCodigo(int codigoProduto) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Produto buscarPorCodigo(int codigoProduto) {
-        return em.createQuery("SELECT produto from Produto produto WHERE produto.prod_codigo = "+codigoProduto, Produto.class).getSingleResult();
+    public Object buscaPorNome(String nomeProduto) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
-    @Override
-    public Produto buscaPorNome(String nomeProduto) {
-        return em.createQuery("SELECT produto from Produto produto WHERE produto.prod_nome = "+nomeProduto, Produto.class).getSingleResult();
-    }
-
+    
+    
 }

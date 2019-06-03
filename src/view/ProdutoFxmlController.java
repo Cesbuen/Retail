@@ -5,12 +5,16 @@
  */
 package view;
 
+import control.ProdutoController;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
+import model.Produto;
 
 /**
  * FXML Controller class
@@ -23,8 +27,17 @@ public class ProdutoFxmlController implements Initializable {
     private Button btn_salvarProduto;
 
     @FXML
-    void acaoSalvarProduto(ActionEvent event) {
+    private TextField tf_nomeProduto;
+    
+    @FXML
+    private ComboBox<?> cb_categoriaProduto;
 
+    @FXML
+    private TextField tf_quantidadeProduto;
+    
+    @FXML
+    void salvarProduto(ActionEvent event) {
+        ProdutoController.salvarProduto(null, tf_nomeProduto.getText(), "teste", Integer.parseInt(tf_quantidadeProduto.getText()));
     }
 
     /**

@@ -5,11 +5,14 @@
  */
 package view;
 
+import control.ProdutoController;
+import dao.ProdutoDao;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import model.Produto;
 
 /**
  *
@@ -24,7 +27,7 @@ public class ProdutoView extends Application {
         Scene cena = new Scene(root);
         palcoPrimario.setScene(cena);
         palcoPrimario.show();
-        
+       
     }
     
     public static void main(String[] args) {

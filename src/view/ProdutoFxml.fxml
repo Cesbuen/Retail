@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import java.net.*?>
@@ -8,10 +9,27 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="-1.0" maxWidth="-1.0" prefHeight="167.0" prefWidth="466.0" styleClass="mainFxmlClass" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ProdutoFxmlController">
+<AnchorPane id="AnchorPane" maxHeight="-1.0" maxWidth="-1.0" prefHeight="215.0" prefWidth="468.0" styleClass="mainFxmlClass" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ProdutoFxmlController">
    <children>
-      <VBox layoutX="103.0" layoutY="21.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+      <VBox AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <children>
+            <ToolBar VBox.vgrow="ALWAYS">
+              <items>
+                  <HBox prefHeight="31.0" prefWidth="380.0">
+                     <children>
+                        <Label id="TituloTela" styleClass="Label" text="Cadastrar Produto" />
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                      <Button fx:id="btn_sair" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" styleClass="Button" text="Sair" textFill="WHITE" HBox.hgrow="ALWAYS" />
+                     </children>
+                  </HBox>
+              </items>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </ToolBar>
             <VBox styleClass="VBox" VBox.vgrow="ALWAYS">
                <children>
                   <Label styleClass="Label" text="Produto:" />
@@ -37,7 +55,8 @@
                         <Label styleClass="Label" text="Categoria:">
                            <HBox.margin>
                               <Insets right="2.0" />
-                           </HBox.margin></Label>
+                           </HBox.margin>
+                        </Label>
                         <ComboBox fx:id="cb_categoriaProduto" styleClass="ComboBox" visibleRowCount="5" HBox.hgrow="ALWAYS" />
                      </children>
                      <rotationAxis>
@@ -49,7 +68,8 @@
                         <Label styleClass="Label" text="Quantidade:">
                            <HBox.margin>
                               <Insets right="2.0" />
-                           </HBox.margin></Label>
+                           </HBox.margin>
+                        </Label>
                         <TextField fx:id="tf_quantidadeProduto" prefHeight="25.0" prefWidth="0.0" styleClass="TextField" HBox.hgrow="ALWAYS" />
                      </children>
                      <HBox.margin>

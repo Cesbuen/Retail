@@ -6,8 +6,6 @@
 package dao;
 
 import java.util.List;
-import javax.persistence.EntityManager;
-import model.Produto;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;

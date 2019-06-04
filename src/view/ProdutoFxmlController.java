@@ -23,14 +23,17 @@ import javafx.scene.control.TextField;
 public class ProdutoFxmlController implements Initializable {
 
     @FXML
+    private Button btn_sair;
+    
+    @FXML
     private Button btn_salvarProduto;
 
     @FXML
     private Button btn_cancelarProduto;
-    
+
     @FXML
     private TextField tf_codigoProduto;
-    
+
     @FXML
     private TextField tf_nomeProduto;
 
@@ -40,7 +43,6 @@ public class ProdutoFxmlController implements Initializable {
     @FXML
     private TextField tf_quantidadeProduto;
 
-  
     @FXML
     void salvarProduto(ActionEvent event) {
         String nomeProduto = tf_nomeProduto.getText();
@@ -54,7 +56,7 @@ public class ProdutoFxmlController implements Initializable {
 
         limparCampos();
     }
-    
+
     @FXML
     void cancelarProduto(ActionEvent event) {
         limparCampos();
@@ -68,9 +70,12 @@ public class ProdutoFxmlController implements Initializable {
         cb_categoriaProduto.getItems().removeAll(cb_categoriaProduto.getItems());
         cb_categoriaProduto.getItems().setAll("Cozinha", "Limpeza", "Higiêne", "Eletrônico");
         cb_categoriaProduto.getSelectionModel().select("Cozinha");
+        
+        btn_sair.setOnMouseClicked((event) -> {
+            ProdutoView.getCadastroProduto().close();
+        });
     }
 
-    
     private void limparCampos() {
         tf_nomeProduto.clear();
         cb_categoriaProduto.getSelectionModel().select("Cozinha");

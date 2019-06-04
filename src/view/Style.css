@@ -11,6 +11,11 @@
     -fx-background-radius: 10;
 }
 
+#TituloTela{
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
 .Label{
     -fx-text-fill: #009999;
     -fx-font-size: 15px;

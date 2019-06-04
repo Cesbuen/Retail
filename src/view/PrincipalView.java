@@ -25,6 +25,7 @@ public class PrincipalView extends Application {
         principalTela.setScene(cena);
         principalTela.setTitle("Retail Software");
         principalTela.show();
+     
     }
 
     public static void main(String[] args) {

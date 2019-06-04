@@ -17,6 +17,8 @@ import javafx.stage.Stage;
  */
 public class ProdutoView extends Application {
 
+    private static Stage cadastroProduto;
+    
     @Override
     public void start(Stage cadastroProduto) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("ProdutoFxml.fxml"));
@@ -25,11 +27,19 @@ public class ProdutoView extends Application {
         cadastroProduto.setScene(cena);
         cadastroProduto.setTitle("Cadastrar Produto");
         cadastroProduto.show();
+        setCadastroProduto(cadastroProduto);
        
+    }
+
+    public static Stage getCadastroProduto() {
+        return cadastroProduto;
+    }
+
+    public static void setCadastroProduto(Stage cadastroProduto) {
+        ProdutoView.cadastroProduto = cadastroProduto;
     }
     
     public static void main(String[] args) {
         launch(args);
     }
-
 }
